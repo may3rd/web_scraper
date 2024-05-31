@@ -1,0 +1,10 @@
+accelerate
+dataset
+datasets
+numpy
+ollama
+openai
+pandas
+torch
+transformers
+mlx
