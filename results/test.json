@@ -1,0 +1,63 @@
+[
+    {
+        "ID": "000101893",
+        "Problem Statement": "Why there is continuous increase of Keq value when product concentration is reduced? With increase in carbon number, Keq. is also increasing, from the stream results it is evident that concentration is decreasing with increase in carbon number:",
+        "Solutions": "When comparing equilibrium constants, note that the exponents are different for each reaction.\nThe equation used to calculate Keq in Aspen Plus as follows:\nKeq = product (fugacity_i^nu_i) / reactant (fugacity_i^nu_i)\nwhere fugacity_i = fugacity of component i (in atm)\nnu_i = stoichiometric coefficient of component i\nSo, when you compare reactions such as\n        4)   Temp. approach               4 CO  + 9 H2   -->  C4 + 4 H2O\n        5)  Temp. approach               5 CO  + 11 H2   -->  C5 + 5 H2O\nIn reaction 4), we have fC4 * fH2O^4 / (fCO^4 * fH2^9), while for reaction 5) we have fC5 * fH2O^5 / (fCO^5 * fH2^11)\nThis is the reason you see continuous increase in Keq value.\nDue the change of exponents, it's not correct to simply compare the numerical value of the equilibrium constant / concentration of reactions\nUser can formulate the reactions as successive reactions, so that they have more similar stoichiometries:\n              Temp. approach               CO  + 2 H2  + C3   -->  C4 + H2O\n              Temp. approach               CO  + 2 H2  + C4   -->  C5 + H2O\nIn this case, you'll see the equilibrium constants have now more similar values, but it is still not straightforward to compare.",
+        "Keywords": "Requil, Keq, Product concentration"
+    },
+    {
+        "ID": "000101901",
+        "Problem Statement": "000101901",
+        "Solutions": [
+            "Relative humidity cannot be directly entered in a material stream, a unit operation “Stream Saturator” to be used.",
+            "Specify Relative humidity (RH%) values under Parameter tab in Stream saturation block.",
+            "Dew point can be calculated by using a Balance operation from manipulator.  Specify Vapor Fraction=1 in dew point stream, to get dew point temperature and retain component mole flow which can be specified in balance block under parameters",
+            "The resulting temp in dew point stream is your dew point value for specified inputs."
+        ],
+        "Keywords": ["Dew point", "Relative humidity", "Case study", "Saturation block", "Balance"]
+    },
+    {
+        "id": "000101926",
+        "Problem Statement": "In this KB article we discuss some of the necessary conditions required to connect PIMS-AO to an Azure SQL Database (PaaS) using Microsoft Entra ID Authentication.",
+        "solutions": "To connect PIMS-AO V14 to a PaaS Azure SQL Database you will need to have installed V18.x of the OLE DB Driver for SQL Servers. From the General Settings> Output Database tab you must change the output database to SQL Server. Next, click on the … icon to open the Universal Data Link Dialog Box.\r\n\r\nUniversal Data Link Dialog Box:\r\nIn the Provider tab of this dialog box, select the “Microsoft OLE DB Driver for SQL Server” option and click Next. This will take you to the Connection tab. Provide the Azure SQL Server instance name and select the “Microsoft Active Directory- Integrated” option. This will use the Microsoft Entra ID credentials of the user currently logged in.\r\n\r\nNext, we need to ensure that some registry keys are added to the OS; this should be done through the Registry Editor application. According to Microsoft’s support, the following registry keys must be present to ensure the correct TLS level is being used:\r\nYou can find a link to the Microsoft Support for this here: https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/reference-connect-tls-enforcement\r\nFinally, you must ensure that the user’s login credentials are correctly configured from the Azure portal to ensure the necessary permissions for modifying the database. As defined in the Installation Guide: the minimum database roles for PIMS users are db_datawriter and db_datareader for each database login. If the user would like to truncate a database the db_ddladmin role is required. Granting db_owner roles for the users covers all required roles.",
+        "keywords": ""
+    },
+    {
+        "ID": "000101892",
+        "Problem Statement": "000101892",
+        "Solutions": "Generally, in Aspen plus EO modelling mass fraction variable is not directly present under EO variable tab, so in order to review mass fraction results under EO variable tab we can follow the below steps:\nAdd an analyzer block under manipulators.\nIn Block Options --> EO Options --> Additional Variables---> enable mass fraction option in the analyzer block.\nNow refer your analyzer block results into EO variables to get mass fraction values.",
+        "Keywords": "Aspen plus EO, Mass fraction, EO variable list"
+    },
+    {
+        "ID": "000101785",
+        "Problem Statement": "After upgrading to V14 APC and applying the latest Desktop EP3, some customers have reported facing a strange issue with their DMC3 Builder. When they import an application and navigate to the Master model, the page becomes green blank, with no models and no options in the top ribbon. The Home tab is also missing.",
+        "Solutions": "Ensure that the ACESAppTemplate.xml file is up to date: The issue may be caused by an outdated ACESAppTemplate.xml file. Uninstall the EP3 patch and then reinstall it to ensure that the ACESAppTemplate.xml file is updated to the latest version.\r\nRemove the APCDesktop.UserPreferences.dat file: The APCDesktop.UserPreferences.dat file stores user-specific preferences and settings for DMC3 Builder. Locate the file in the appropriate directory, which may vary depending on the operating system. Delete the APCDesktop.UserPreferences.dat file. Launch DMC3 Builder again, and the file will be recreated with default settings.\r\nVerify if the model view populates correctly: Open the problematic application file in DMC3 Builder after performing the above steps. Check if the model view now populates with the expected models.",
+        "Keywords": "DMC3 Builder, Desktop, EP3, blank page, Master model, ACESAppTemplate.xml, APCDesktop.UserPreferences.dat"
+    },
+    {
+        "ID": "000078766",
+        "Problem Statement": "000078766",
+        "Solutions": "TSK_SQL_SERVER is the Aspen InfoPlus.21 external task that processes the queries generated from the Aspen SQLplus Query Writer. There are three parameters available for TSK_SQL_SERVER, affecting permissions on the IP.21 database. They are: n (bypass security) r (read-only) c (no system commands) To apply parameters to the task, add the appropriate parameter(s) following the port specification in the command line field of TSK_SQL_SERVER. For example: 10014 c or 10014 rc or 10014 n Please note, specifying these parameters affects all SQLplus connections, regardless of the user. Configuring these permissions through the Aspen Framework Security Manager is the preferred method, as permissions can be granted by user role. For more information on SQLplus application-based security, please see the Assigning Secured Tasks topic in the SQLplus help files.\r\nFor further information about configuring the read-only parameter for TSK_SQL_SERVER, please seeSolution 000071792: How to create a read only connection for SQLplus users",
+        "Keywords": "InfoPlus.21 Manager, permissions, write, read-only, operating system commands"
+    },
+    {
+        "ID": "000097254",
+        "Problem Statement": "000097254",
+        "Solutions": [
+            "This record definition should I use for the creation of SPC tags?",
+            "These records do not historize the CUSUM HI and CUSUM LOW value for each subgroup.",
+            "In a Q_XBARDef record, the Mean value and the Range values are historized.",
+            "In a Q_XBARSDef records the Subgroup Mean and Standard Deviation values are historized.",
+            "These records also historize CUSUM HI and CUSUM LOW values in addition to the Mean and Range/Standard Deviation values.",
+            "The repeat area fields remain the same as Q_XBARCDef and Q_XBARCSDef.",
+            "There is a tool that can be used in the creation of some (not all) SPC records.  The Aspen Real-time SPC Analyzer Configuration Wizard executable is located here: ...",
+            "It's also mentioned in the Aspen Real-Time SPC Analyzer User's Guide.",
+            "To run the Aspen Real-Time SPC Analyzer Configuration Utility (wizard), use the Windows Start menu and select Aspen Manufacturing Suite | Aspen InfoPlus.21 | Real-Time SPC Configuration.",
+            "The QConfigUtility.exe guides the user in setting up Q records defined by Q_XBarCDef, Q_XBarCSDef, Q_XBar21Def, and Q_XBarS21Def.",
+            "Those record definitions above correspond to these SPC variable types:",
+            "With that information, you cannot use the SPC configuration wizard to create or modify SPC records belonging to a custom definition, only the record definitions above.",
+            "Despite not being able to use the wizard for Q_XBarDef records, you could duplicate child records of Q_XBarDef.  If you had one that was configured in a way that you want you could duplicate it and retain the settings in the new record (as a time saver compared to making a record again from scratch)."
+        ],
+        "Keywords": ["SPC records", "Q_XBARDef", "Q_XBARSDef", "Q_XBARCDef", "Q_XBARCSDef", "Q_XBar21Def", "Q_XBarS21Def", "CUSUM HI", "CUSUM LOW", "MSSD"]
+    }
+]
